@@ -1,6 +1,7 @@
 package com.mikebd.playground.scratch1.service;
 
 import com.mikebd.playground.scratch1.util.test.TestData;
+import com.mikebd.playground.scratch1.util.test.TestDataList;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -14,15 +15,7 @@ import java.util.Arrays;
 public class StockPriceBestProfitService {
     public boolean run() {
         log.info("Start StockPriceBestProfitService");
-        boolean pass = true;
-        pass &= testData1.test(StockPriceBestProfitService::test);
-        pass &= testData2.test(StockPriceBestProfitService::test);
-        pass &= testData3.test(StockPriceBestProfitService::test);
-        if (pass) {
-            log.info("Overall: PASS");
-        } else {
-            log.info("Overall: FAIL");
-        }
+        final boolean pass = testDataList.test(StockPriceBestProfitService::test, log);
         log.info("End StockPriceBestProfitService");
         return pass;
     }
@@ -56,7 +49,11 @@ public class StockPriceBestProfitService {
         return profit;
     }
 
-    static final TestData<long[], Long> testData1 = new TestData<>(new long[] {13, 10, 8, 4, 10}, 6L);
-    static final TestData<long[], Long> testData2 = new TestData<>(new long[] {6, 0, -1, 10}, 11L);
-    static final TestData<long[], Long> testData3 = new TestData<>(new long[] {5, 10, 20, 30, 1, 0}, 25L);
+    static final TestDataList<long[], Long> testDataList = new TestDataList<>();
+    static {
+        final var list = testDataList.getList();
+        list.add(new TestData<>(new long[] {13, 10, 8, 4, 10}, 6L));
+        list.add(new TestData<>(new long[] {6, 0, -1, 10}, 11L));
+        list.add(new TestData<>(new long[] {5, 10, 20, 30, 1, 0}, 25L));
+    }
 }
