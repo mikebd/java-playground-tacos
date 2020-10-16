@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class StockPriceBestProfitServiceTest {
     @Test
     void test() {
-        assertTrue(StockPriceBestProfitService.test(StockPriceBestProfitService.testData1));
-        assertTrue(StockPriceBestProfitService.test(StockPriceBestProfitService.testData2));
-        assertTrue(StockPriceBestProfitService.test(StockPriceBestProfitService.testData3));
+        assertTrue(StockPriceBestProfitService.testData1.test(StockPriceBestProfitService::test));
+        assertTrue(StockPriceBestProfitService.testData2.test(StockPriceBestProfitService::test));
+        assertTrue(StockPriceBestProfitService.testData3.test(StockPriceBestProfitService::test));
     }
 }

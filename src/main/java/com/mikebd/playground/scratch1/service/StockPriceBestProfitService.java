@@ -1,7 +1,6 @@
 package com.mikebd.playground.scratch1.service;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import com.mikebd.playground.scratch1.util.test.TestData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +15,9 @@ public class StockPriceBestProfitService {
     public boolean run() {
         log.info("Start StockPriceBestProfitService");
         boolean pass = true;
-        pass &= test(testData1);
-        pass &= test(testData2);
-        pass &= test(testData3);
+        pass &= testData1.test(StockPriceBestProfitService::test);
+        pass &= testData2.test(StockPriceBestProfitService::test);
+        pass &= testData3.test(StockPriceBestProfitService::test);
         if (pass) {
             log.info("Overall: PASS");
         } else {
@@ -28,7 +27,7 @@ public class StockPriceBestProfitService {
         return pass;
     }
 
-    private static boolean test(final long[] input, final long expected) {
+    public static boolean test(final long[] input, final long expected) {
         final long actual = calculate(input);
         final boolean pass = expected == actual;
         final String logMessage = (pass ? "PASS " : "FAIL ") + Arrays.toString(input) + " expect " + expected + " = " + actual;
@@ -57,17 +56,7 @@ public class StockPriceBestProfitService {
         return profit;
     }
 
-    @AllArgsConstructor @Getter
-    static class TestData {
-        private final long[] input;
-        private final long expected;
-    }
-
-    static boolean test(final TestData testData) {
-        return test(testData.getInput(), testData.getExpected());
-    }
-
-    static final TestData testData1 = new TestData(new long[] {13, 10, 8, 4, 10}, 6);
-    static final TestData testData2 = new TestData(new long[] {6, 0, -1, 10}, 11);
-    static final TestData testData3 = new TestData(new long[] {5, 10, 20, 30, 1, 0}, 25);
+    static final TestData<long[], Long> testData1 = new TestData<>(new long[] {13, 10, 8, 4, 10}, 6L);
+    static final TestData<long[], Long> testData2 = new TestData<>(new long[] {6, 0, -1, 10}, 11L);
+    static final TestData<long[], Long> testData3 = new TestData<>(new long[] {5, 10, 20, 30, 1, 0}, 25L);
 }
