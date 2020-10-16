@@ -1,6 +1,7 @@
 package com.mikebd.playground.scratch1;
 
 import com.mikebd.playground.scratch1.service.FibonacciService;
+import com.mikebd.playground.scratch1.service.RomanNumberService;
 import com.mikebd.playground.scratch1.service.StockPriceBestProfitService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,7 @@ public class Scratch1Application implements CommandLineRunner {
     public void run(String... args) throws Exception {
         log.info("Start");
         boolean pass = fibonacciService.run();
+        pass &= romanNumberService.run();
         pass &= stockPriceBestProfitService.run();
         log.info("End");
         final int exitCode = pass ? 0 : 1;
@@ -30,5 +32,6 @@ public class Scratch1Application implements CommandLineRunner {
 
     private final ApplicationContext ctx;
     private final FibonacciService fibonacciService;
+    private final RomanNumberService romanNumberService;
     private final StockPriceBestProfitService stockPriceBestProfitService;
 }
