@@ -3,10 +3,10 @@ package com.mikebd.playground.scratch1;
 import com.mikebd.playground.scratch1.service.StockPriceBestProfitService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
 @AllArgsConstructor
 @SpringBootApplication
@@ -20,10 +20,11 @@ public class Scratch1Application implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         log.info("Start");
-        stockPriceBestProfitService.run();
+        final boolean pass = stockPriceBestProfitService.run();
         log.info("End");
-        // SpringApplication.exit();
+        System.exit(SpringApplication.exit(ctx, () -> pass ? 0 : 1));
     }
 
+    private final ApplicationContext ctx;
     private final StockPriceBestProfitService stockPriceBestProfitService;
 }

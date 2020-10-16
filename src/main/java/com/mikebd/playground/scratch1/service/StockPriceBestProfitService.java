@@ -11,7 +11,7 @@ import java.util.Arrays;
 @Service
 @Slf4j
 public class StockPriceBestProfitService {
-    public void run() {
+    public boolean run() {
         boolean pass = true;
         pass &= test(new long [] {13, 10, 8, 4, 10}, 6);
         pass &= test(new long [] {6, 0, -1, 10}, 11);
@@ -21,6 +21,7 @@ public class StockPriceBestProfitService {
         } else {
             log.info("Overall: FAIL");
         }
+        return pass;
     }
 
     private static boolean test(final long[] input, final long expected) {
