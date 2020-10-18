@@ -43,9 +43,26 @@ public class RomanNumberService {
     }
 
     private static int calculate(final String input) {
+        if (null == input || input.length() == 0) return 0;
         int value = 0;
         for (int i = 0; i < input.length(); ++i) {
-            value += digitValue(input.charAt(i));
+            final int currentDigitValue = digitValue(input.charAt(i));
+            boolean validDoubleDigitValue = false;
+            if ((currentDigitValue == 1 || currentDigitValue == 10 || currentDigitValue == 100) && ((i + 1) < input.length())) {
+                final int nextDigitValue = digitValue(input.charAt(i + 1));
+                final int doubleDigitValue = nextDigitValue - currentDigitValue;
+                // log.info("double digit value = {}", doubleDigitValue);
+                if (doubleDigitValue == 4 || doubleDigitValue == 9 ||
+                        doubleDigitValue == 40 || doubleDigitValue == 90 ||
+                        doubleDigitValue == 400 || doubleDigitValue == 900) {
+                    value += doubleDigitValue;
+                    validDoubleDigitValue = true;
+                    ++i;
+                }
+            }
+            if (!validDoubleDigitValue) {
+                value += currentDigitValue;
+            }
         }
         return value;
     }
@@ -65,11 +82,27 @@ public class RomanNumberService {
         list.add(new TestData<>("i", 1));
         list.add(new TestData<>("III", 3));
         list.add(new TestData<>("IV", 4));
+        list.add(new TestData<>("V", 5));
+        list.add(new TestData<>("VI", 6));
+        list.add(new TestData<>("IX", 9));
+        list.add(new TestData<>("X", 10));
         list.add(new TestData<>("XII", 12));
+        list.add(new TestData<>("IXX", 19));
+        list.add(new TestData<>("XL", 40));
+        list.add(new TestData<>("XLI", 41));
+        list.add(new TestData<>("L", 50));
+        list.add(new TestData<>("XC", 90));
+        list.add(new TestData<>("XCI", 91));
+        list.add(new TestData<>("C", 100));
+        list.add(new TestData<>("CD", 400));
+        list.add(new TestData<>("CDI", 401));
+        list.add(new TestData<>("D", 500));
+        list.add(new TestData<>("DXLII", 542));
+        list.add(new TestData<>("CM", 900));
+        list.add(new TestData<>("CMI", 901));
+        list.add(new TestData<>("M", 1000));
         list.add(new TestData<>("MXIV", 1014));
         list.add(new TestData<>("MIXX", 1019));
-        list.add(new TestData<>("IXX", 19));
-        list.add(new TestData<>("DXLII", 542));
         list.add(new TestData<>("MXXIII", 1023));
     }
 
@@ -85,7 +118,7 @@ public class RomanNumberService {
             1,      // I
             0,      // J
             0,      // K
-            0,      // L
+            50,      // L
             1000,   // M
             0,      // N
             0,      // O
@@ -95,7 +128,7 @@ public class RomanNumberService {
             0,      // S
             0,      // T
             0,      // U
-            0,      // V
+            5,      // V
             0,      // W
             10,     // X
             0,      // Y
