@@ -1,4 +1,4 @@
-package com.mikebd.playground.scratch1.tacos;
+package com.mikebd.playground.tacos.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

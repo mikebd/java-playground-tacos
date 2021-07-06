@@ -1,10 +1,10 @@
-package com.mikebd.playground.scratch1;
+package com.mikebd.playground.tacos;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Scratch1ApplicationTests {
+class TacosApplicationTests {
 
     @Test
     void contextLoads() {
