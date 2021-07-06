@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.mikebd.playground</groupId>
-    <artifactId>scratch1</artifactId>
+    <artifactId>tacos</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>scratch1</name>
-    <description>Playground Scratch1</description>
+    <name>tacos</name>
+    <description>Spring in Action, 6e</description>
 
     <properties>
         <java.version>14</java.version>
