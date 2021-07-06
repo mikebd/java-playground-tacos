@@ -2,6 +2,6 @@
 
 Java playground following along with Spring in Action, 6e
 
-* Java 14
+* Java 16
 * Spring Boot
 * Maven

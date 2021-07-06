@@ -15,7 +15,7 @@
     <description>Spring in Action, 6e</description>
 
     <properties>
-        <java.version>14</java.version>
+        <java.version>16</java.version>
         <maven.compiler.release>${java.version}</maven.compiler.release>
     </properties>
 
@@ -24,6 +24,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+            <version>1.18.20</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
